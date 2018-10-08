@@ -1,27 +1,39 @@
-## Laravel PHP Framework
+Introduction
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+I have used Laravel php framework to make a simple system that gets the world bank open data and saves the data into a Postgres database. I have presented the data stored in the database in a UI using jquery datatable.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+The code structure may appear to have several files and folders. Most of them are laravel built in.
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+Main Tools and Library used
 
-## Official Documentation
+1. Laravel php framework
+2. Postgres Database
+3. Yajra datatabe
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Contributing
+Main Clases
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+1. Catalog.php
+2.DataStoreController.php
+3.HandleDataQueriesController.php
 
-## Security Vulnerabilities
+UI files
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+1. public/css *
+2. public/js *
+3. resources/views/data-view.blade.php
 
-### License
+Main Routes
+1. / main route. It directs to the UI
+2. /api/data - Fetches world bank data from api and saves to the database
+3. /get/world/bank/data - queries saved data and serves the Ui with data
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+Deployment guidelines
+
+1. Clone the repository
+2. Install composer and other larevel php framework requirements
+3. Setup your database. Run php artisan migrate command to populate database tables
+4. Navivigate to the cloned repository and run php artisan serve command
+5. 
+
