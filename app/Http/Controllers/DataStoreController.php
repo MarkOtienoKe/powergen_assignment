@@ -10,9 +10,9 @@ use App\Catalog;
 
 class DataStoreController extends Controller
 {
-    
     public function loadAndSaveApiData(){
 
+       try {
         $apiUrl='http://api.worldbank.org/v2/datacatalog?format=json';
 
         $dataContent = file_get_contents($apiUrl);
@@ -20,8 +20,10 @@ class DataStoreController extends Controller
         $data = json_decode($dataContent);
 
         $totalPages = $data->pages;
+
         $dataTosave = [];
 
+        //get data from every page from the api using for loop
         for ($page = 1; $page <= $totalPages; $page++) {
 
           $pageUrl = 'http://api.worldbank.org/v2/datacatalog?page='.$page.'&format=json';
@@ -29,6 +31,7 @@ class DataStoreController extends Controller
           $theData = $this->getCatalogDataFromApi($pageUrl);
 
            $filterData = json_decode($theData,true);
+           
            $cataLogData = $filterData['datacatalog'];
 
            foreach($cataLogData as $inddata){
@@ -43,18 +46,28 @@ class DataStoreController extends Controller
 
             }
 
+            //save data to the database
            Catalog::insert($dataTosave);
 
            }
 
         }
 
-    return 200;
+        return 200;
+
+        } catch (Exception $e) {
+            \Log::error('Exception while saving catalog data', [$e]);
+
+            return null;
+        }
+
+        
         
     }
 
     public function getCatalogDataFromApi($url){
-        $curl = curl_init();
+       try {
+            $curl = curl_init();
          curl_setopt_array($curl, array(
           CURLOPT_URL => $url,
           CURLOPT_RETURNTRANSFER => true,
@@ -84,6 +97,13 @@ class DataStoreController extends Controller
         } else {
           return $response;
         }
+
+        } catch (Exception $e) {
+            \Log::error('Exception while making request to api via curl', [$e]);
+
+            return null;
+        }
+       
     }
 
 }

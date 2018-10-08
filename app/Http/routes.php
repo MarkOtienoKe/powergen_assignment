@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('data-view');
 });
 Route::get('api/data', 'DataStoreController@loadAndSaveApiData');
+Route::get('/get/world/bank/data', 'HandleDataQueriesController@getAllCatalogData');
