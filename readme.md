@@ -34,6 +34,6 @@ Deployment guidelines
 1. Clone the repository
 2. Install composer and other larevel php framework requirements
 3. Setup your database. Run php artisan migrate command to populate database tables
-4. Navivigate to the cloned repository and run php artisan serve command
-5. 
+4. Navigate to the cloned repository and run php artisan serve command
+
 
